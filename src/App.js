@@ -8,6 +8,14 @@ class App {
     const numberInput = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
+    this.createCars(carInput);
+  }
+  createCars(carInput) {
+    const cars = carInput.split(",").map((name) => ({
+      name: name.trim(),
+      position: 0,
+    }));
+    return cars;
   }
 }
 
