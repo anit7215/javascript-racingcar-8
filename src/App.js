@@ -33,6 +33,15 @@ class App {
       const randomNumber = MissionUtils.Random.pickNumberInRange(0, 9);
       if (randomNumber >= 4) car.position += 1;
     });
+    this.printRoundResult(cars);
+  }
+
+  printRoundResult(cars) {
+    cars.forEach((car) => {
+      const position = "-".repeat(car.position);
+      Console.print(`${car.name} : ${position}`);
+    });
+    Console.print("");
   }
 }
 
