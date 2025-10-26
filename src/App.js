@@ -10,6 +10,8 @@ class App {
     const numberInput = await Console.readLineAsync(
       "시도할 횟수는 몇 회인가요?\n"
     );
+    this.validateTryCount(numberInput);
+
     const cars = this.createCars(carInput);
     const tryCount = Number(numberInput);
 
@@ -38,6 +40,16 @@ class App {
       throw new Error(
         "[ERROR] 자동차 이름은 공백이나 특수문자를 포함할 수 없습니다."
       );
+    }
+  }
+
+  validateTryCount(numberInput) {
+    if (!numberInput.trim()) {
+      throw new Error("[ERROR] 시도할 횟수를 입력해야 합니다.");
+    }
+    const tryCount = Number(numberInput);
+    if (!Number.isInteger(tryCount) || tryCount <= 0) {
+      throw new Error("[ERROR] 시도할 횟수는 양의 정수여야 합니다.");
     }
   }
 
