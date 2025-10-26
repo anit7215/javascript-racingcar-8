@@ -46,9 +46,19 @@ describe("자동차 경주", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test.each([
+    { inputs: ["pobi,javaji", "3"], description: "자동차 이름 5자 초과" },
+    { inputs: ["pobi,,woni", "3"], description: "자동차 이름 비어 있음" },
+    { inputs: ["pobi,won!", "3"], description: "자동차 이름에 특수문자 포함" },
+    { inputs: ["pobi,pobi", "3"], description: "자동차 이름 중복" },
+    { inputs: ["", "1"], description: "자동차 이름 입력 없음" },
+    { inputs: ["pobi,woni", "-1"], description: "시도할 횟수가 음수" },
+    { inputs: ["pobi,woni", "0"], description: "시도할 횟수가 0" },
+    { inputs: ["pobi,woni", "1.5"], description: "시도할 횟수가 소수" },
+    { inputs: ["pobi,woni", "abc"], description: "시도할 횟수가 숫자가 아님" },
+    { inputs: ["pobi,woni", ""], description: "시도 횟수 미입력" },
+  ])("예외 테스트 - $description", async ({ inputs }) => {
     // given
-    const inputs = ["pobi,javaji"];
     mockQuestions(inputs);
 
     // when
