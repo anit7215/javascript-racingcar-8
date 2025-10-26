@@ -10,6 +10,8 @@ class App {
     );
     const cars = this.createCars(carInput);
     const tryCount = Number(numberInput);
+    
+    Console.print("\n실행 결과");
 
     this.simulateRace(cars, tryCount);
     this.printWinners(cars);
